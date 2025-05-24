@@ -9,14 +9,15 @@ import Footer from './shared/Footer'
 import Navbar from './shared/Navbar'
 
 const Home = () => {
-  useGetAllJobs();
+  // Temporarily disable this hook call for debugging
+  // useGetAllJobs();
   const { user } = useSelector(store => store.auth);
   const navigate = useNavigate();
   useEffect(() => {
     if (user?.role === 'recruiter') {
       navigate("/admin/companies");
     }
-  }, []);
+  }, [user, navigate]);
   return (
     <>
       <Navbar />

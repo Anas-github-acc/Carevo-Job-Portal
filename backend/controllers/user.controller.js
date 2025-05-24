@@ -86,7 +86,7 @@ export const login = async (req, res) => {
 
     const tokenData = { userId: user._id };
     const token = jwt.sign(tokenData, process.env.SECRET_KEY, {
-      expiresIn: "1d",
+      expiresIn: "12h",
     });
 
     user = {
@@ -101,7 +101,7 @@ export const login = async (req, res) => {
     return res
       .status(200)
       .cookie("token", token, {
-        maxAge: 24 * 60 * 60 * 1000,
+        maxAge: 12 * 60 * 60 * 1000, // 12 hours
         httpOnly: true,
         sameSite: "strict",
       })
@@ -395,6 +395,18 @@ export const updateCertifications = async (req, res) => {
       .json({ message: "Certifications updated successfully", user, success: true });
   } catch (error) {
     console.log(error);
+    res.status(500).json({ message: "Internal Server Error", success: false });
+  }
+};
+
+export const getCurrentUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.id).select("-password");
+    if (!user) {
+      return res.status(404).json({ message: "User not found", success: false });
+    }
+    res.status(200).json({ user, success: true });
+  } catch (error) {
     res.status(500).json({ message: "Internal Server Error", success: false });
   }
 };

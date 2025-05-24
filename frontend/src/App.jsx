@@ -19,114 +19,49 @@ import Browse from './components/Browse'
 import Home from './components/Home'
 import Jobs from './components/Jobs'
 import JobDescription from './components/JobsDescription'
-import { BackGroundLayout } from './components/Layouts/BackgroudLayout'
 import Profile from './components/Profile'
 import ApplicationStatus from './components/user/ApplicationStatus'
 import { ThemeProvider } from 'next-themes'
 import './App.css'
 import AllApplicants from './components/admin/AllApplicants'
-
+import RootLayout from './components/RootLayout'
 
 const appRouter = createBrowserRouter([
   {
     path: '/',
-    element: <Home />
-  },
-  {
-    path: '/login',
-    element: <Login />
-  },
-  {
-    path: '/signup',
-    element: <Signup />
-  },
-  {
-    path: "/jobs",
-    element: <Jobs />
-  },
-  {
-    path: "/description/:id",
-    element: <JobDescription />
-  },
-  {
-    path: "/about",
-    element: <AboutUs />
-  },
-  {
-    path: "/browse",
-    element: <Browse />
-  },
-  {
-    path: "/profile",
-    element: <UserProtectedRoute><Profile /></UserProtectedRoute>
-  },
-  {
-    path: "/my-applications",
-    element: <UserProtectedRoute><ApplicationStatus /></UserProtectedRoute>
-  },
-  // admin ke liye yha se start hoga
-  {
-    path:"/admin/companies",
-    element: <ProtectedRoute><Companies/></ProtectedRoute>
-  },
-  {
-    path:"/admin/companies/create",
-    element: <ProtectedRoute><CompanyCreate/></ProtectedRoute> 
-  },
-  {
-    path:"/admin/companies/manage",
-    element: <ProtectedRoute><ManageCompanies/></ProtectedRoute> 
-  },
-  {
-    path:"/admin/companies/edit/:id",
-    element: <ProtectedRoute><EditCompany/></ProtectedRoute> 
-  },
-  {
-    path:"/admin/companies/:id",
-    element:<ProtectedRoute><CompanySetup/></ProtectedRoute> 
-  },
-  {
-    path:"/admin/companies/details/:id",
-    element:<ProtectedRoute><CompanyDetails/></ProtectedRoute> 
-  },
-  {
-    path:"/admin/jobs",
-    element:<ProtectedRoute><AdminJobs/></ProtectedRoute> 
-  },
-  {
-    path:"/admin/jobs/create",
-    element:<ProtectedRoute><PostJob/></ProtectedRoute> 
-  },
-  {
-    path:"/admin/jobs/:id/applicants",
-    element:<ProtectedRoute><Applicants/></ProtectedRoute> 
-  },
-  {
-    path:"/admin/jobs/:id/edit",
-    element:<ProtectedRoute><JobEdit/></ProtectedRoute> 
-  },
-  {
-    path:"/admin/analytics",
-    element:<ProtectedRoute><AnalyticsDashboard/></ProtectedRoute> 
-  },
-  {
-    path:"/admin/all-applicants",
-    element:<ProtectedRoute><AllApplicants/></ProtectedRoute> 
-  },
-  {
-    path: '/background',
-    element: <BackGroundLayout />
+    element: <RootLayout />, // Layout route
+    children: [
+      { path: '', element: <Home /> },
+      { path: 'login', element: <Login /> },
+      { path: 'signup', element: <Signup /> },
+      { path: 'jobs', element: <Jobs /> },
+      { path: 'description/:id', element: <JobDescription /> },
+      { path: 'about', element: <AboutUs /> },
+      { path: 'browse', element: <Browse /> },
+      { path: 'profile', element: <UserProtectedRoute><Profile /></UserProtectedRoute> },
+      { path: 'my-applications', element: <UserProtectedRoute><ApplicationStatus /></UserProtectedRoute> },
+      { path: 'admin/companies', element: <ProtectedRoute><Companies/></ProtectedRoute> },
+      { path: 'admin/companies/create', element: <ProtectedRoute><CompanyCreate/></ProtectedRoute> },
+      { path: 'admin/companies/manage', element: <ProtectedRoute><ManageCompanies/></ProtectedRoute> },
+      { path: 'admin/companies/edit/:id', element: <ProtectedRoute><EditCompany/></ProtectedRoute> },
+      { path: 'admin/companies/:id', element: <ProtectedRoute><CompanySetup/></ProtectedRoute> },
+      { path: 'admin/companies/details/:id', element: <ProtectedRoute><CompanyDetails/></ProtectedRoute> },
+      { path: 'admin/jobs', element: <ProtectedRoute><AdminJobs/></ProtectedRoute> },
+      { path: 'admin/jobs/create', element: <ProtectedRoute><PostJob/></ProtectedRoute> },
+      { path: 'admin/jobs/:id/applicants', element: <ProtectedRoute><Applicants/></ProtectedRoute> },
+      { path: 'admin/jobs/:id/edit', element: <ProtectedRoute><JobEdit/></ProtectedRoute> },
+      { path: 'admin/analytics', element: <ProtectedRoute><AnalyticsDashboard/></ProtectedRoute> },
+      { path: 'admin/all-applicants', element: <ProtectedRoute><AllApplicants/></ProtectedRoute> },
+      { path: 'background', element: <div /> }, // You can adjust this as needed
+    ]
   }
-
-])
+]);
 
 function App() {
   return (
     <ThemeProvider defaultTheme="dark" attribute="class">
       <div className="dark">
-        <BackGroundLayout>
-          <RouterProvider router={appRouter} />
-        </BackGroundLayout>
+        <RouterProvider router={appRouter} />
       </div>
     </ThemeProvider>
   )

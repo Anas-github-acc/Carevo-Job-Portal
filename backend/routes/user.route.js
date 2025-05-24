@@ -6,7 +6,8 @@ import {
   updateProfile,
   updateExperience,
   updateEducation,
-  updateCertifications
+  updateCertifications,
+  getCurrentUser
 } from "../controllers/user.controller.js";
 import isAuthenticated from "../middlewares/isAuthenticated.js";
 import { singleUpload, profileUpload } from "../middlewares/multer.js";
@@ -20,5 +21,6 @@ router.route("/profile/update").post(isAuthenticated, profileUpload, updateProfi
 router.route("/profile/experience/update").post(isAuthenticated, updateExperience);
 router.route("/profile/education/update").post(isAuthenticated, updateEducation);
 router.route("/profile/certifications/update").post(isAuthenticated, updateCertifications);
+router.route("/me").get(isAuthenticated, getCurrentUser);
 
 export default router;
