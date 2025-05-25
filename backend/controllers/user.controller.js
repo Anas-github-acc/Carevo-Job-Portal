@@ -17,17 +17,6 @@ export const register = async (req, res) => {
         .json({ message: "All the fields aren't filled", success: false });
     }
 
-    // Configure Cloudinary with performance optimization settings
-    console.log('cloud name = ', process.env.CLOUD_NAME, process.env.API_KEY, process.env.API_SECRET)
-    
-    cloudinary.config({
-        cloud_name: process.env.CLOUD_NAME,
-        api_key: process.env.API_KEY,
-        api_secret: process.env.API_SECRET,
-        secure: true, // Use HTTPS
-        timeout: 60000, // 60 seconds global timeout
-    });
-
     
     const file = req.file;
     const fileUri = getDataUri(file);
