@@ -20,7 +20,7 @@ export const register = async (req, res) => {
     }
 
     // Configure Cloudinary with performance optimization settings
-    console.log('cloud name = ', process.env.CLOUD_NAME)
+    console.log('cloud name = ', process.env.CLOUD_NAME, process.env.API_KEY, process.env.API_SECRET)
     
     cloudinary.config({
         cloud_name: process.env.CLOUD_NAME,
