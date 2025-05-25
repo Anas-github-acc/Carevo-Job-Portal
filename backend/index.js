@@ -22,6 +22,16 @@ const corsOption = {
 };
 app.use(cors(corsOption)); //to link for resource-sharing between Client-Server running on different port.
 
+app.get("/api/v1/health", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "Server is running successfully",
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+    environment: process.env.NODE_ENV || "development"
+  });
+});
+
 //api's
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/company", companyRoute);
