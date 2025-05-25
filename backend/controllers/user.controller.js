@@ -3,9 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import getDataUri from "../utils/datauri.js";
 import { sendWelcomeEmail } from "../utils/emailService.js";
-import {v2 as cloudinary} from "cloudinary";
-import dotenv from "dotenv";
-dotenv.config();
+import cloudinary from "../utils/cloudinary.js";
 
 
 export const register = async (req, res) => {
