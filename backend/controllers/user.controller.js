@@ -21,6 +21,7 @@ export const register = async (req, res) => {
     const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
 
     const user = await User.findOne({ email });
+    console.log('user detail =' , user)
     if (user) {
       return res
         .status(400)
@@ -40,8 +41,11 @@ export const register = async (req, res) => {
       }
     });
 
+    console.log('use created')
+
     // Send welcome email after successful registration
     await sendWelcomeEmail(newUser._id);
+    console.log('mail sended')
 
     return res
       .status(201)
