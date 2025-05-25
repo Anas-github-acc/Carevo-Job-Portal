@@ -24,10 +24,6 @@
       "dest": "/frontend/dist/$1"
     }
   ],
-  "functions": {
-    "backend/index.js": {
-      "maxDuration": 30
-    },
   "outputDirectory": "frontend/dist",
   "installCommand": "npm install && cd frontend && npm install && cd ../backend && npm install"
 }
