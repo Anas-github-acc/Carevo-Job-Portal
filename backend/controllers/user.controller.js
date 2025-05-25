@@ -4,8 +4,6 @@ import jwt from "jsonwebtoken";
 import getDataUri from "../utils/datauri.js";
 import cloudinary from "../utils/cloudinary.js";
 import { sendWelcomeEmail } from "../utils/emailService.js";
-import dotenv from "dotenv";
-dotenv.config();
 
 export const register = async (req, res) => {
   try {
@@ -17,11 +15,7 @@ export const register = async (req, res) => {
         .status(400)
         .json({ message: "All the fields aren't filled", success: false });
     }
-
-    // Configure Cloudinary with performance optimization settings
-    console.log('cloud name = ', process.env.CLOUD_NAME)
-
-
+    
     const file = req.file;
     const fileUri = getDataUri(file);
     console.log('uploading to cloud')
