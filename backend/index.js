@@ -17,14 +17,7 @@ app.use(express.json()); //data is moved in a (json format) between Client and S
 app.use(express.urlencoded({ extended: true })); //parse the URL encoded data into nested objects (helps in,req.body).
 app.use(cookieParser()); //parse the data coming from frontend which stored in the local stroage of URL.
 const corsOption = {
-  origin: [
-    // Development URLs
-    'http://localhost:5173',
-    'http://localhost:5174',
-    'http://localhost:5175',
-    // Production URL - replace with your actual Vercel domain
-    'https://my-carevo.vercel.app'
-  ],
+  origin: [`http://localhost:5173`, `http://localhost:5174`, `http://localhost:5175`], //frontend ports
   credentials: true,
 };
 app.use(cors(corsOption)); //to link for resource-sharing between Client-Server running on different port.
