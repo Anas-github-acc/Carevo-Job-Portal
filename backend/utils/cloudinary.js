@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 dotenv.config();
 
 // Configure Cloudinary with performance optimization settings
+console.log('cloud name = ', process.env.CLOUD_NAME)
+
 cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,
     api_key: process.env.API_KEY,
